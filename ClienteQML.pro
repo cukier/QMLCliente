@@ -15,7 +15,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
     clientsocket.cpp \
-    clistmodel.cpp
+    clistmodel.cpp \
+    filterproxymodel.cpp
 
 RESOURCES += qml.qrc
 
@@ -33,4 +34,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     clientsocket.h \
     clistmodel.h \
-    table.h
+    table.h \
+    filterproxymodel.h

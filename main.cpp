@@ -4,6 +4,7 @@
 
 #include "clistmodel.h"
 #include "clientsocket.h"
+#include "filterproxymodel.h"
 
 int main(int argc, char *argv[])
 {
@@ -13,7 +14,13 @@ int main(int argc, char *argv[])
     QQmlContext* context = engine.rootContext();
     CListModel listmodel;
     ClientSocket socket(&listmodel, "mauricio", "mauricio1");
+    FilterProxyModel filterModel;
 
+    filterModel.setSourceModel(&listmodel);
+    filterModel.setFilterRole(ItemNameRole);
+    filterModel.setSortRole(ItemNameRole);
+
+    context->setContextProperty("filterModel", &filterModel);
     context->setContextProperty("listmodel", &listmodel);
     context->setContextProperty("socket", &socket);
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));

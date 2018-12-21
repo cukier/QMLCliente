@@ -10,9 +10,30 @@ Window {
     height: 480
     title: qsTr("QML Cliente")
 
-    RowLayout {
-        id: rowLayout
+    ColumnLayout {
+        id: colLayout
         anchors.fill: parent
+
+        Rectangle {
+            Layout.fillWidth: true
+            height: 40
+            z: 1
+
+            RowLayout {
+                anchors.fill: parent
+                anchors.centerIn: parent
+
+                TextField {
+                    placeholderText: "Type here.."
+                    Layout.fillWidth: true
+
+                    onTextChanged: {
+                        filterModel.setFilterString(text)
+                        console.log("Filtro: " + text)
+                    }
+                }
+            }
+        }
 
         ListView {
             id: listViewItemName
@@ -24,7 +45,7 @@ Window {
             Layout.fillHeight: true
             cacheBuffer: 100
             spacing: 10
-            model: listmodel
+            model: filterModel
 
             delegate: Rectangle {
                 width: parent.width
@@ -33,7 +54,7 @@ Window {
                 height: 40
 
                 RowLayout {
-                    id: colLayout
+                    id: rowLayout
                     anchors.fill: parent
 
                     Text {
