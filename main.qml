@@ -1,6 +1,8 @@
 import QtQuick 2.11
 import QtQuick.Window 2.11
 import QtQuick.Controls 2.4
+import QtQuick.Layouts 1.3
+import QtQuick.Controls.Styles 1.4
 
 Window {
     visible: true
@@ -8,22 +10,57 @@ Window {
     height: 480
     title: qsTr("QML Cliente")
 
-    ListView {
-        id: sampleListView
+    RowLayout {
+        id: rowLayout
         anchors.fill: parent
-        model: listmodel
-        cacheBuffer: 100
-        spacing: 10
 
-        delegate: Rectangle {
-            width: parent.width
-            radius: 5
-            anchors.horizontalCenter: parent.horizontalCenter
-            height: 40
+        ListView {
+            id: listViewItemName
+            x: 0
+            y: 0
+            width: 110
+            height: 160
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            cacheBuffer: 100
+            spacing: 10
+            model: listmodel
 
-            Text {
-                id: nameTxt
-                text: ItemName
+            delegate: Rectangle {
+                width: parent.width
+                radius: 5
+                anchors.horizontalCenter: parent.horizontalCenter
+                height: 40
+
+                Text {
+                    id: nameTxtItemName
+                    text: ItemName
+                }
+            }
+        }
+
+        ListView {
+            id: listViewItemCode
+            x: 0
+            y: 0
+            width: 110
+            height: 160
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            cacheBuffer: 100
+            spacing: 10
+            model: listmodel
+
+            delegate: Rectangle {
+                width: parent.width
+                radius: 5
+                anchors.horizontalCenter: parent.horizontalCenter
+                height: 40
+
+                Text {
+                    id: nameTxtItemCode
+                    text: ItemCode
+                }
             }
         }
     }
@@ -42,3 +79,10 @@ Window {
         }
     }
 }
+
+
+
+/*##^## Designer {
+    D{i:10;anchors_height:100;anchors_width:100}
+}
+ ##^##*/
