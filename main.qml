@@ -32,54 +32,44 @@ Window {
                 anchors.horizontalCenter: parent.horizontalCenter
                 height: 40
 
-                Text {
-                    id: nameTxtItemName
-                    text: ItemName
+                RowLayout {
+                    id: colLayout
+                    anchors.fill: parent
+
+                    Text {
+                        id: nameTxtItemName
+                        text: ItemName
+                        wrapMode: Text.WordWrap
+                    }
+
+                    Text {
+                        id: nameTxtItemCode
+                        text: ItemCode
+                    }
+
+                    Text {
+                        id: nameTxtStateCode
+                        text: StateCode
+                    }
                 }
             }
         }
 
-        ListView {
-            id: listViewItemCode
-            x: 0
-            y: 0
-            width: 110
-            height: 160
-            Layout.fillWidth: true
-            Layout.fillHeight: true
-            cacheBuffer: 100
-            spacing: 10
-            model: listmodel
+        Button {
+            width: 60
+            height: 40
+            anchors.bottom: parent.bottom
+            anchors.right: parent.right
+            anchors.bottomMargin: 10
+            anchors.rightMargin: 10
+            text: "conectar"
 
-            delegate: Rectangle {
-                width: parent.width
-                radius: 5
-                anchors.horizontalCenter: parent.horizontalCenter
-                height: 40
-
-                Text {
-                    id: nameTxtItemCode
-                    text: ItemCode
-                }
+            onClicked: {
+                socket.receberModelo("localhost", 53593)
             }
-        }
-    }
-
-    Button {
-        width: 60
-        height: 40
-        anchors.bottom: parent.bottom
-        anchors.right: parent.right
-        anchors.bottomMargin: 10
-        anchors.rightMargin: 10
-        text: "conectar"
-
-        onClicked: {
-            socket.receberModelo("localhost", 53593)
         }
     }
 }
-
 
 
 /*##^## Designer {
